@@ -45,7 +45,7 @@ export default function About() {
               style={{ transformStyle: "preserve-3d" }}
             >
               <motion.img
-                src="/images/Screenshot 2025-07-31 at 10.04.56 AM_1753974799408.png"
+                src="/work/Screenshot 2025-07-31 at 10.04.56 AM_1753974799408.png"
                 alt="Royal Cuts Barbershop Interior"
                 className="relative rounded-xl shadow-2xl w-full h-auto border-2 border-blue-400/40"
                 animate={{
