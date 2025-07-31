@@ -6,22 +6,22 @@ export default function OurWork() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const services = [
+  const workImages = [
     {
-      title: "Fresh Fade Haircuts",
-      description: "Precision cuts with modern styling techniques"
+      url: "/images/haircut1.png",
+      alt: "Fresh fade haircut"
     },
     {
-      title: "Beard Trimming & Styling",
-      description: "Expert beard shaping and maintenance"
+      url: "/images/haircut2.png", 
+      alt: "Beard trim and styling"
     },
     {
-      title: "Classic Gentleman's Cuts",
-      description: "Timeless styles with contemporary flair"
+      url: "/images/haircut3.png",
+      alt: "Clean buzz cut"
     },
     {
-      title: "Hair Styling & Finishing",
-      description: "Complete styling with premium products"
+      url: "/images/haircut4.png",
+      alt: "Modern fade with beard"
     }
   ];
 
@@ -43,20 +43,23 @@ export default function OurWork() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
+          {workImages.map((image, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              className="overflow-hidden rounded-2xl shadow-lg relative group cursor-pointer"
             >
-              <h3 className="font-space text-xl font-bold mb-3 text-black">
-                {service.title}
-              </h3>
-              <p className="font-poppins text-gray-600">
-                {service.description}
-              </p>
+              <img
+                src={image.url}
+                alt={image.alt}
+                className="w-full h-80 object-cover rounded-2xl"
+                loading="lazy"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <p className="text-white font-poppins font-medium">{image.alt}</p>
+              </div>
             </motion.div>
           ))}
         </div>
