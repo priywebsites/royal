@@ -15,7 +15,15 @@ export default function About() {
   return (
     <section id="about" className="py-20 bg-gray-50" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="relative">
+            <img
+              src="/images/barbershop-interior.png"
+              alt="Royal Cuts Barbershop Interior"
+              className="rounded-xl shadow-lg w-full h-auto"
+            />
+          </div>
+          
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
