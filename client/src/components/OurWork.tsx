@@ -87,7 +87,6 @@ export default function OurWork() {
                 z: 50
               }}
               style={{
-                boxShadow: "0 25px 50px rgba(0, 123, 255, 0.4)",
                 transformStyle: "preserve-3d"
               }}
               className="overflow-hidden rounded-2xl shadow-2xl gradient-border relative group cursor-pointer"
@@ -117,7 +116,7 @@ export default function OurWork() {
               <motion.img
                 src={image.url}
                 alt={image.alt}
-                className="relative w-full h-80 object-cover transition-all duration-700 group-hover:scale-115 rounded-2xl border border-blue-400/20"
+                className="relative w-full h-80 object-cover transition-all duration-700 group-hover:scale-115 rounded-2xl border border-blue-400/20 shadow-2xl"
                 animate={{
                   filter: [
                     "brightness(1) contrast(1) saturate(1)",
@@ -129,15 +128,10 @@ export default function OurWork() {
                 whileHover={{ filter: "brightness(1.2) contrast(1.2) saturate(1.3)" }}
               />
               <motion.div
-                className="absolute top-3 right-3 w-3 h-3 bg-blue-400 rounded-full"
+                className="absolute top-3 right-3 w-3 h-3 bg-blue-400 rounded-full shadow-lg"
                 animate={{
                   scale: [1, 1.5, 1],
-                  opacity: [0.6, 1, 0.6],
-                  boxShadow: [
-                    "0 0 5px rgba(59, 130, 246, 0.5)",
-                    "0 0 15px rgba(59, 130, 246, 0.8)",
-                    "0 0 5px rgba(59, 130, 246, 0.5)"
-                  ]
+                  opacity: [0.6, 1, 0.6]
                 }}
                 transition={{
                   duration: 2.5,
