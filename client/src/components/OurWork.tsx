@@ -1,7 +1,6 @@
-
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function OurWork() {
   const ref = useRef(null);
@@ -26,6 +25,12 @@ export default function OurWork() {
     },
   ];
 
+  const [brokenImages, setBrokenImages] = useState<number[]>([]);
+
+  const handleImageError = (index: number) => {
+    setBrokenImages((prev) => [...prev, index]);
+  };
+
   return (
     <section id="work" className="py-20 bg-white" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,23 +54,19 @@ export default function OurWork() {
               key={index}
               className="overflow-hidden rounded-2xl shadow-lg relative group cursor-pointer"
             >
-              <img
-                src={image.url}
-                alt={image.alt}
-                className="w-full h-80 object-cover rounded-2xl"
-                loading="lazy"
-                onError={(e) => {
-                  console.error(`Failed to load image: ${image.url}`);
-                  // Fallback to a placeholder or hide the broken image
-                  e.currentTarget.style.display = 'block';
-                  e.currentTarget.style.backgroundColor = '#f3f4f6';
-                  e.currentTarget.style.color = '#9ca3af';
-                  e.currentTarget.style.display = 'flex';
-                  e.currentTarget.style.alignItems = 'center';
-                  e.currentTarget.style.justifyContent = 'center';
-                  e.currentTarget.innerHTML = 'Image Loading...';
-                }}
-              />
+              {brokenImages.includes(index) ? (
+                <div className="w-full h-80 flex items-center justify-center bg-gray-200 text-gray-500 text-center rounded-2xl">
+                  Image failed to load
+                </div>
+              ) : (
+                <img
+                  src={image.url}
+                  alt={image.alt}
+                  className="w-full h-80 object-cover rounded-2xl"
+                  loading="lazy"
+                  onError={() => handleImageError(index)}
+                />
+              )}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <p className="text-white font-poppins font-medium">{image.alt}</p>
               </div>
