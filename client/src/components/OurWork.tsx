@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -44,29 +45,24 @@ export default function OurWork() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {workImages.map((image, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={
-                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-              }
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1
-              }}
-              className="overflow-hidden rounded-2xl shadow-2xl relative group cursor-pointer"
+              className="overflow-hidden rounded-2xl shadow-lg relative group cursor-pointer"
             >
-              <motion.img
+              <img
                 src={image.url}
                 alt={image.alt}
                 className="w-full h-80 object-cover rounded-2xl"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                loading="lazy"
+                onError={(e) => {
+                  console.error(`Failed to load image: ${image.url}`);
+                  e.currentTarget.style.display = 'none';
+                }}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <p className="text-white font-poppins font-medium">{image.alt}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
