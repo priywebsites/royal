@@ -54,9 +54,23 @@ export default function Navigation() {
               transition={{ delay: 0.2 }}
               className="flex-shrink-0"
             >
-              <h1 className="text-white font-playfair text-xl font-semibold">
+              <motion.h1 
+                className="text-white font-space text-xl font-bold tracking-wider"
+                animate={{
+                  textShadow: [
+                    "0 0 5px rgba(0, 123, 255, 0.3)",
+                    "0 0 10px rgba(0, 123, 255, 0.6)",
+                    "0 0 5px rgba(0, 123, 255, 0.3)",
+                  ],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
                 Royal Cuts
-              </h1>
+              </motion.h1>
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -73,9 +87,18 @@ export default function Navigation() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + index * 0.1 }}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-white hover:text-gray-300 transition-colors duration-300"
+                  className="text-white hover:text-blue-400 transition-all duration-300 font-poppins font-medium relative"
+                  whileHover={{ 
+                    scale: 1.05,
+                    textShadow: "0 0 8px rgba(0, 123, 255, 0.8)"
+                  }}
                 >
                   {item.label}
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500"
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </motion.button>
               ))}
             </motion.div>
@@ -88,7 +111,7 @@ export default function Navigation() {
             >
               <Button
                 onClick={handleBookNow}
-                className="btn-royal text-white px-6 py-2 rounded-full font-oswald font-medium hover:scale-105 transition-transform"
+                className="btn-blue text-white px-6 py-2 rounded-full font-space font-semibold hover:scale-105 transition-transform"
               >
                 BOOK NOW
               </Button>
@@ -142,7 +165,12 @@ export default function Navigation() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 + index * 0.1 }}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-white text-2xl font-playfair hover:text-gray-300 transition-colors"
+                  className="text-white text-2xl font-space font-semibold hover:text-blue-400 transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.1,
+                    textShadow: "0 0 15px rgba(0, 123, 255, 0.8)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {item.label}
                 </motion.button>
@@ -156,7 +184,7 @@ export default function Navigation() {
               >
                 <Button
                   onClick={handleBookNow}
-                  className="btn-royal text-white px-8 py-3 rounded-full font-oswald font-medium text-lg"
+                  className="btn-blue text-white px-8 py-3 rounded-full font-space font-semibold text-lg"
                 >
                   <Phone className="mr-2 h-5 w-5" />
                   BOOK NOW

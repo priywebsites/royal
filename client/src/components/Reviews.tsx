@@ -78,12 +78,34 @@ export default function Reviews() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-black">
+          <motion.h2 
+            className="font-space text-4xl md:text-5xl font-bold mb-6 text-black"
+            animate={{
+              textShadow: [
+                "0 0 5px rgba(0, 123, 255, 0.2)",
+                "0 0 10px rgba(0, 123, 255, 0.4)",
+                "0 0 5px rgba(0, 123, 255, 0.2)",
+              ],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             What Our Clients Say
-          </h2>
-          <p className="font-inter text-xl text-gray-600 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="font-poppins text-xl text-gray-600 max-w-3xl mx-auto"
+            animate={{ y: [0, -3, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             Real reviews from satisfied customers
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

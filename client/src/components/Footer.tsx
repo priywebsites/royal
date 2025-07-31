@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Phone, Clock } from "lucide-react";
+import { Phone, Clock, Instagram } from "lucide-react";
 
 export default function Footer() {
   const ref = useRef(null);
@@ -31,12 +31,37 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="font-playfair text-2xl font-bold mb-4">
+            <motion.h3 
+              className="font-space text-2xl font-bold mb-4"
+              animate={{
+                textShadow: [
+                  "0 0 5px rgba(0, 123, 255, 0.3)",
+                  "0 0 10px rgba(0, 123, 255, 0.6)",
+                  "0 0 5px rgba(0, 123, 255, 0.3)",
+                ],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
               Royal Cuts Barbershop
-            </h3>
-            <p className="text-gray-400 mb-4">
+            </motion.h3>
+            <p className="text-gray-400 mb-4 font-poppins">
               Where Precision Meets Premium Style
             </p>
+            <motion.a
+              href="https://www.instagram.com/royalcutsoffical/?__d=11%2F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-300 font-poppins font-medium"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Instagram className="w-5 h-5" />
+              Follow us on Instagram
+            </motion.a>
             <p className="text-gray-400">
               103 Jefferson St
               <br />
@@ -49,7 +74,7 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="font-playfair text-lg font-semibold mb-4">
+            <h4 className="font-space text-lg font-semibold mb-4">
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -62,12 +87,13 @@ export default function Footer() {
                   }
                   transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
                 >
-                  <button
+                  <motion.button
                     onClick={() => handleNavClick(link.href)}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-blue-400 transition-colors font-poppins"
+                    whileHover={{ scale: 1.05, x: 5 }}
                   >
                     {link.label}
-                  </button>
+                  </motion.button>
                 </motion.li>
               ))}
             </ul>
@@ -78,7 +104,7 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="font-playfair text-lg font-semibold mb-4">
+            <h4 className="font-space text-lg font-semibold mb-4">
               Contact Info
             </h4>
             <ul className="space-y-2">

@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600&display=swap');
 
 :root {
   --background: hsl(0, 0%, 100%);
@@ -39,6 +39,9 @@
   --royal-gray-700: hsl(0, 0%, 25%);
   --royal-gray-800: hsl(0, 0%, 15%);
   --royal-gray-900: hsl(0, 0%, 9%);
+  --royal-blue: hsl(220, 100%, 50%);
+  --royal-blue-light: hsl(220, 100%, 70%);
+  --royal-blue-dark: hsl(220, 100%, 30%);
 }
 
 .dark {
@@ -78,16 +81,16 @@
 }
 
 @layer utilities {
-  .font-playfair {
-    font-family: 'Playfair Display', serif;
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
   }
   
-  .font-inter {
-    font-family: 'Inter', sans-serif;
+  .font-space {
+    font-family: 'Space Grotesk', sans-serif;
   }
   
-  .font-oswald {
-    font-family: 'Oswald', sans-serif;
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
   }
   
   .parallax-bg {
@@ -105,13 +108,43 @@
   
   .btn-royal {
     background: linear-gradient(135deg, hsl(0, 0%, 0%) 0%, hsl(0, 0%, 20%) 100%);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-royal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(220, 100, 50, 0.2), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .btn-royal:hover::before {
+    left: 100%;
   }
   
   .btn-royal:hover {
-    background: linear-gradient(135deg, hsl(0, 0%, 20%) 0%, hsl(0, 0%, 0%) 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, hsl(220, 100%, 50%) 0%, hsl(0, 0%, 0%) 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(220, 100, 50, 0.4);
+  }
+  
+  .btn-blue {
+    background: linear-gradient(135deg, hsl(220, 100%, 50%) 0%, hsl(220, 100%, 30%) 100%);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-blue:hover {
+    background: linear-gradient(135deg, hsl(220, 100%, 60%) 0%, hsl(220, 100%, 40%) 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(220, 100, 50, 0.5);
   }
   
   .glass-effect {
@@ -130,10 +163,68 @@
   }
   
   .scale-on-hover {
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
   }
   
   .scale-on-hover:hover {
     transform: scale(1.05);
+  }
+  
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .slide-in-left {
+    animation: slideInLeft 1s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  .slide-in-right {
+    animation: slideInRight 1s ease-out;
+  }
+  
+  @keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulseGlow {
+    from { box-shadow: 0 0 20px rgba(220, 100, 50, 0.3); }
+    to { box-shadow: 0 0 40px rgba(220, 100, 50, 0.7); }
+  }
+  
+  .rotate-in {
+    animation: rotateIn 0.8s ease-out;
+  }
+  
+  @keyframes rotateIn {
+    from { transform: rotate(-180deg) scale(0.5); opacity: 0; }
+    to { transform: rotate(0deg) scale(1); opacity: 1; }
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #007BFF 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .gradient-border {
+    border: 2px solid transparent;
+    background: linear-gradient(black, black) padding-box,
+                linear-gradient(135deg, #007BFF, #ffffff, #007BFF) border-box;
   }
 }

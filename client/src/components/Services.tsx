@@ -72,13 +72,35 @@ export default function Services() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
+          <motion.h2 
+            className="font-space text-4xl md:text-5xl font-bold mb-6"
+            animate={{
+              textShadow: [
+                "0 0 5px rgba(0, 123, 255, 0.3)",
+                "0 0 15px rgba(0, 123, 255, 0.6)",
+                "0 0 5px rgba(0, 123, 255, 0.3)",
+              ],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             Our Services
-          </h2>
-          <p className="font-inter text-xl text-gray-300 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="font-poppins text-xl text-gray-300 max-w-3xl mx-auto"
+            animate={{ y: [0, -3, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             Premium grooming services designed to elevate your style and
             confidence
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -87,12 +109,24 @@ export default function Services() {
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, scale: 0.5, rotateY: 180 }}
                 animate={
-                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                  isInView ? { opacity: 1, scale: 1, rotateY: 0 } : { opacity: 0, scale: 0.5, rotateY: 180 }
                 }
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="service-card bg-gray-900 p-8 rounded-lg"
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100 
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -10
+                }}
+                style={{
+                  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)"
+                }}
+                className="service-card bg-gray-900 p-8 rounded-xl gradient-border group relative overflow-hidden"
               >
                 <div className="text-center mb-6">
                   <motion.div
@@ -101,7 +135,7 @@ export default function Services() {
                   >
                     <IconComponent className="w-12 h-12 text-white mb-4 mx-auto" />
                   </motion.div>
-                  <h3 className="font-playfair text-2xl font-semibold mb-2">
+                  <h3 className="font-space text-2xl font-semibold mb-2">
                     {service.title}
                   </h3>
                   <div className="text-3xl font-bold text-white mb-2">
@@ -109,15 +143,20 @@ export default function Services() {
                   </div>
                   <div className="text-gray-400">{service.duration}</div>
                 </div>
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-gray-300 mb-6 leading-relaxed font-poppins">
                   {service.description}
                 </p>
-                <Button
-                  onClick={handleBookNow}
-                  className="w-full btn-royal text-white py-3 rounded-full font-oswald font-medium hover:scale-105 transition-transform"
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  BOOK NOW
-                </Button>
+                  <Button
+                    onClick={handleBookNow}
+                    className="w-full btn-blue text-white py-3 rounded-full font-space font-semibold hover:scale-105 transition-transform pulse-glow"
+                  >
+                    BOOK NOW
+                  </Button>
+                </motion.div>
               </motion.div>
             );
           })}

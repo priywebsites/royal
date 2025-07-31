@@ -38,12 +38,34 @@ export default function FindUs() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
+          <motion.h2 
+            className="font-space text-4xl md:text-5xl font-bold mb-6"
+            animate={{
+              textShadow: [
+                "0 0 5px rgba(0, 123, 255, 0.3)",
+                "0 0 15px rgba(0, 123, 255, 0.6)",
+                "0 0 5px rgba(0, 123, 255, 0.3)",
+              ],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             Find Us
-          </h2>
-          <p className="font-inter text-xl text-gray-300 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="font-poppins text-xl text-gray-300 max-w-3xl mx-auto"
+            animate={{ y: [0, -3, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             Conveniently located in the heart of Smyrna, Tennessee
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -62,7 +84,7 @@ export default function FindUs() {
               >
                 <MapPin className="w-6 h-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-playfair text-xl font-semibold mb-2">
+                  <h3 className="font-space text-xl font-semibold mb-2">
                     Address
                   </h3>
                   <p className="text-gray-300 mb-2">
@@ -90,7 +112,7 @@ export default function FindUs() {
               >
                 <Phone className="w-6 h-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-playfair text-xl font-semibold mb-2">
+                  <h3 className="font-space text-xl font-semibold mb-2">
                     Phone
                   </h3>
                   <a
@@ -110,7 +132,7 @@ export default function FindUs() {
               >
                 <Clock className="w-6 h-6 text-white mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-playfair text-xl font-semibold mb-4">
+                  <h3 className="font-space text-xl font-semibold mb-4">
                     Hours
                   </h3>
                   <div className="space-y-2 text-gray-300">
@@ -172,29 +194,68 @@ export default function FindUs() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-16"
         >
-          <h3 className="font-playfair text-3xl font-bold mb-6">
+          <motion.h3 
+            className="font-space text-3xl font-bold mb-6"
+            animate={{
+              textShadow: [
+                "0 0 5px rgba(0, 123, 255, 0.4)",
+                "0 0 15px rgba(0, 123, 255, 0.7)",
+                "0 0 5px rgba(0, 123, 255, 0.4)",
+              ],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             Ready for the Royal Treatment?
-          </h3>
-          <p className="font-inter text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+          </motion.h3>
+          <motion.p 
+            className="font-poppins text-lg text-gray-300 mb-8 max-w-2xl mx-auto"
+            animate={{ y: [0, -2, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             Contact us today to schedule your appointment and experience premium
             grooming at its finest.
-          </p>
+          </motion.p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              onClick={handleCallToBook}
-              className="btn-royal text-white px-8 py-4 rounded-full font-oswald font-medium text-lg hover:scale-105 transition-transform"
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0] }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              <Phone className="mr-2 h-5 w-5" />
-              CALL TO BOOK
-            </Button>
-            <Button
-              onClick={handleGetDirections}
-              variant="outline"
-              className="border-2 border-white text-white bg-transparent px-8 py-4 rounded-full font-oswald font-medium text-lg hover:bg-white hover:text-black transition-all duration-300"
+              <Button
+                onClick={handleCallToBook}
+                className="btn-blue text-white px-8 py-4 rounded-full font-space font-semibold text-lg pulse-glow"
+              >
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  className="mr-2"
+                >
+                  <Phone className="h-5 w-5" />
+                </motion.div>
+                CALL TO BOOK
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <MapPin className="mr-2 h-5 w-5" />
-              GET DIRECTIONS
-            </Button>
+              <Button
+                onClick={handleGetDirections}
+                variant="outline"
+                className="border-2 border-blue-400 text-blue-400 bg-transparent px-8 py-4 rounded-full font-space font-semibold text-lg hover:bg-blue-400 hover:text-black transition-all duration-300"
+              >
+                <MapPin className="mr-2 h-5 w-5" />
+                GET DIRECTIONS
+              </Button>
+            </motion.div>
           </div>
         </motion.div>
       </div>
