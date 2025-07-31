@@ -15,78 +15,7 @@ export default function About() {
   return (
     <section id="about" className="py-20 bg-gray-50" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50, rotateY: 45, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, x: 0, rotateY: 0, scale: 1 } : { opacity: 0, x: -50, rotateY: 45, scale: 0.8 }}
-            transition={{ duration: 1.2, type: "spring", stiffness: 80 }}
-            className="relative group"
-          >
-            <motion.div
-              className="absolute -inset-6 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 rounded-2xl blur-xl opacity-40 group-hover:opacity-70"
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-              }}
-            />
-            <motion.div
-              className="relative"
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 8,
-                rotateX: 5,
-                z: 30
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              style={{ transformStyle: "preserve-3d" }}
-            >
-              <motion.img
-                src="/work/Screenshot 2025-07-31 at 10.04.56 AM_1753974799408.png"
-                alt="Royal Cuts Barbershop Interior"
-                className="relative rounded-xl shadow-2xl w-full h-auto border-2 border-blue-400/40"
-                animate={{
-                  y: [0, -8, 0],
-                  boxShadow: [
-                    "0 20px 40px rgba(0, 123, 255, 0.3)",
-                    "0 30px 60px rgba(0, 123, 255, 0.5)",
-                    "0 20px 40px rgba(0, 123, 255, 0.3)"
-                  ]
-                }}
-                transition={{
-                  y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                  boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                }}
-              />
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-xl"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-              <motion.div
-                className="absolute top-4 right-4 w-4 h-4 bg-blue-500 rounded-full"
-                animate={{
-                  scale: [1, 1.8, 1],
-                  opacity: [0.5, 1, 0.5],
-                  boxShadow: [
-                    "0 0 0px rgba(0, 123, 255, 0.5)",
-                    "0 0 20px rgba(0, 123, 255, 0.8)",
-                    "0 0 0px rgba(0, 123, 255, 0.5)"
-                  ]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </motion.div>
-          </motion.div>
-
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}

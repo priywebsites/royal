@@ -1,35 +1,29 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function OurWork() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const workImages = [
+  const services = [
     {
-      url: "/work/Screenshot 2025-07-31 at 10.00.42 AM_1753974204311.png",
-      alt: "Fresh fade haircut",
+      title: "Fresh Fade Haircuts",
+      description: "Precision cuts with modern styling techniques"
     },
     {
-      url: "/work/Screenshot 2025-07-31 at 10.00.59 AM_1753974204311.png",
-      alt: "Precision beard trim",
+      title: "Beard Trimming & Styling",
+      description: "Expert beard shaping and maintenance"
     },
     {
-      url: "/work/Screenshot 2025-07-31 at 10.01.40 AM_1753974204311.png",
-      alt: "Modern haircut styling",
+      title: "Classic Gentleman's Cuts",
+      description: "Timeless styles with contemporary flair"
     },
     {
-      url: "/work/Screenshot 2025-07-31 at 10.02.00 AM_1753974204311.png",
-      alt: "Classic gentleman's cut",
-    },
+      title: "Hair Styling & Finishing",
+      description: "Complete styling with premium products"
+    }
   ];
-
-  const [brokenImages, setBrokenImages] = useState<number[]>([]);
-
-  const handleImageError = (index: number) => {
-    setBrokenImages((prev) => [...prev, index]);
-  };
 
   return (
     <section id="work" className="py-20 bg-white" ref={ref}>
@@ -49,28 +43,21 @@ export default function OurWork() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {workImages.map((image, index) => (
-            <div
+          {services.map((service, index) => (
+            <motion.div
               key={index}
-              className="overflow-hidden rounded-2xl shadow-lg relative group cursor-pointer"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
             >
-              {brokenImages.includes(index) ? (
-                <div className="w-full h-80 flex items-center justify-center bg-gray-200 text-gray-500 text-center rounded-2xl">
-                  Image failed to load
-                </div>
-              ) : (
-                <img
-                  src={image.url}
-                  alt={image.alt}
-                  className="w-full h-80 object-cover rounded-2xl"
-                  loading="lazy"
-                  onError={() => handleImageError(index)}
-                />
-              )}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-white font-poppins font-medium">{image.alt}</p>
-              </div>
-            </div>
+              <h3 className="font-space text-xl font-bold mb-3 text-black">
+                {service.title}
+              </h3>
+              <p className="font-poppins text-gray-600">
+                {service.description}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>
