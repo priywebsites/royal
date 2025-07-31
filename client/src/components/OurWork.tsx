@@ -8,19 +8,19 @@ export default function OurWork() {
 
   const workImages = [
     {
-      url: "/images/screenshot-2025-07-31-10-00-42.png",
+      url: "/images/Screenshot 2025-07-31 at 10.00.42 AM_1753974204311.png",
       alt: "Fresh fade haircut",
     },
     {
-      url: "/images/screenshot-2025-07-31-10-00-59.png",
+      url: "/images/Screenshot 2025-07-31 at 10.00.59 AM_1753974204311.png",
       alt: "Precision beard trim",
     },
     {
-      url: "/images/screenshot-2025-07-31-10-01-40.png",
+      url: "/images/Screenshot 2025-07-31 at 10.01.40 AM_1753974204311.png",
       alt: "Modern haircut styling",
     },
     {
-      url: "/images/screenshot-2025-07-31-10-02-00.png",
+      url: "/images/Screenshot 2025-07-31 at 10.02.00 AM_1753974204311.png",
       alt: "Classic gentleman's cut",
     },
   ];
