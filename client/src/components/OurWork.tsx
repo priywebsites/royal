@@ -43,7 +43,7 @@ export default function OurWork() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {workImages.map((image, index) => (
             <div
               key={index}
@@ -56,7 +56,14 @@ export default function OurWork() {
                 loading="lazy"
                 onError={(e) => {
                   console.error(`Failed to load image: ${image.url}`);
-                  e.currentTarget.style.display = 'none';
+                  // Fallback to a placeholder or hide the broken image
+                  e.currentTarget.style.display = 'block';
+                  e.currentTarget.style.backgroundColor = '#f3f4f6';
+                  e.currentTarget.style.color = '#9ca3af';
+                  e.currentTarget.style.display = 'flex';
+                  e.currentTarget.style.alignItems = 'center';
+                  e.currentTarget.style.justifyContent = 'center';
+                  e.currentTarget.innerHTML = 'Image Loading...';
                 }}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
