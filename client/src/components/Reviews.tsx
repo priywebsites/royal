@@ -60,12 +60,30 @@ export default function Reviews() {
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <Star
+      <motion.div
         key={i}
-        className={`w-4 h-4 ${
-          i < rating ? "text-yellow-400 fill-current" : "text-gray-300"
-        }`}
-      />
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ 
+          delay: i * 0.1, 
+          type: "spring", 
+          stiffness: 200,
+          damping: 10 
+        }}
+        whileHover={{ 
+          scale: 1.3, 
+          rotate: [0, -10, 10, 0] 
+        }}
+      >
+        <Star
+          className={`w-5 h-5 ${
+            i < rating ? "text-blue-500 fill-current" : "text-gray-300"
+          }`}
+          style={{
+            filter: i < rating ? "drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))" : "none"
+          }}
+        />
+      </motion.div>
     ));
   };
 
@@ -112,13 +130,24 @@ export default function Reviews() {
           {reviews.map((review, index) => (
             <motion.div
               key={review.name}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 50, scale: 0.8, rotateY: 45 }}
               animate={
-                isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                isInView ? { opacity: 1, y: 0, scale: 1, rotateY: 0 } : { opacity: 0, y: 50, scale: 0.8, rotateY: 45 }
               }
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-white p-8 rounded-lg shadow-lg"
+              transition={{ 
+                duration: 1, 
+                delay: index * 0.15,
+                type: "spring",
+                stiffness: 100 
+              }}
+              whileHover={{ 
+                y: -10, 
+                scale: 1.03,
+                rotateY: 5,
+                boxShadow: "0 20px 40px rgba(0, 123, 255, 0.2)"
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="bg-white p-8 rounded-xl shadow-lg border-2 border-blue-100/50 relative group"
             >
               <div className="flex items-center mb-4">
                 <div className="flex">{renderStars(review.rating)}</div>

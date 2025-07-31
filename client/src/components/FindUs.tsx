@@ -172,7 +172,24 @@ export default function FindUs() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="bg-gray-800 rounded-lg overflow-hidden shadow-2xl h-96">
+            <motion.div 
+              className="bg-gray-800 rounded-xl overflow-hidden shadow-2xl h-96 border-2 border-blue-400/20"
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 30px 60px rgba(0, 123, 255, 0.3)"
+              }}
+              animate={{
+                boxShadow: [
+                  "0 20px 40px rgba(0, 0, 0, 0.3)",
+                  "0 25px 50px rgba(0, 123, 255, 0.2)",
+                  "0 20px 40px rgba(0, 0, 0, 0.3)"
+                ]
+              }}
+              transition={{
+                boxShadow: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                scale: { type: "spring", stiffness: 300 }
+              }}
+            >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.8969!2d-86.5187977!3d35.982598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88640d275399b88f%3A0x4be656943dc06542!2sRoyal%20Cuts%20Barbershop!5e0!3m2!1sen!2sus!4v1643723200000!5m2!1sen!2sus"
                 width="100%"
@@ -183,7 +200,7 @@ export default function FindUs() {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Royal Cuts Barbershop Location"
               />
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
